@@ -1,0 +1,40 @@
+{% extends "post/main.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Users
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                 <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">User First Name</th>
+                      <th scope="col">User Last Name</th>
+                      <th scope="col">Username</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                {% for user in users %}
+
+                 <tr>
+                     <td>{{ forloop.counter }}</td>
+                     <td>{{ user.first_name }}</td>
+                     <td>{{ user.last_name }}</td>
+                     <td>{{ user.username }}</td>
+                     <td>
+                         <a class="btn btn-primary" style="color:#fff;" onclick="viewUserPosts({{ user.id }})">view user posts</a>
+                     </td>
+
+                </tr>
+                 {% endfor %}
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content%}
