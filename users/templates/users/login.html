@@ -4,19 +4,19 @@
 
 {% block content %}
 <div class="container">
-    <div class="card">
-        <div class="card-header">
+    <div class="card" style="background-color: #191919;">
+        <div class="card-header text-muted">
             login
         </div>
-        <div class="card-body">
+        <div class="card-body text-muted">
             <form method="POST">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary" style="background-color:#191919;">Login</button>
             </form>
         </div>
         <div class="card-footer text-muted">
-            <a href="{% url 'users-register' %}">Register ?</a>
+            <a href="{% url 'users-register' %}" style="background-color:#191919;">Register ?</a>
         </div>
     </div>
 

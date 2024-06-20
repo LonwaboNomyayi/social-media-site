@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from .forms import PostItForm
 from users.forms import UserUpdateInfoForm, UserImageExtensionForm
 from django.contrib import messages
+from django.core.paginator import Paginator
+
 
 # Create your views here.
 
@@ -43,9 +45,12 @@ def timeline_page(request):
         form = PostItForm()
 
     number_of_posts = PostIt.objects.filter(posted_by=request.user.id).order_by('-posted_date')
+    paginator = Paginator(number_of_posts,3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
     context = {
-        'post_its': number_of_posts,
+        'post_its': page_obj,
         'number_of_personal_posts': len(number_of_posts),
         'form': form
     }

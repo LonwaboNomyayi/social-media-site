@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 18rem; background-color: #191919;">
                 <div class="d-flex justify-content-center">
                     {% if not user.userimageextension.user_image.url %}
 
@@ -25,9 +25,9 @@
                 <hr>
 
                 <div class="card-body">
-                    <h5 class="card-title">{{  user.first_name }}  {{  user.last_name }}</h5>
-                    <p class="text-muted">@{{ user.username }} </p>
-                    <p class="card-text">Number of posts: {{ number_of_personal_posts }}</p>
+                    <h5 class="card-title" style="color:#fff;">{{  user.first_name }}  {{  user.last_name }}</h5>
+                    <p style="color:#fff;">@{{ user.username }} </p>
+                    <p class="card-text" style="color:#fff;">Number of posts: {{ number_of_personal_posts }}</p>
                 </div>
                 <div class="card-footer d-flex justify-content-end">
                     <a href="{% url 'post-account' %}" class="card-link">Edit</a>
@@ -36,14 +36,14 @@
         </div>
         <div class="col-8">
             <div class="mt-2 mb-2 d-flex justify-content-end">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                <button type="button" class="btn" style="background-color:#191919; color:#fff;" data-toggle="modal" data-target="#exampleModalCenter">
                     New Post
                 </button>
             </div>
 
             {% for post_it in post_its  %}
 
-            <div class="card mb-4">
+            <div class="card mb-4" style="background-color:#191919;">
 
                 <div class="card-body">
                     <div>
@@ -65,14 +65,14 @@
                             <div class="col-10">
                                 <div class="row">
                                     <div class="col">
-                                        <h5 class="card-title">{{ post_it.post_title }}</h5>
+                                        <h5 class="card-title text-muted"" style="color:##b2b2b2;">{{ post_it.post_title }}</h5>
                                     </div>
                                     <div class="col-4">
                                         <p class="text-muted">{{post_it.posted_date}}</p>
                                     </div>
                                 </div>
 
-                                <p class="card-text">
+                                <p class="card-text text-muted"" style="color:##b2b2b2;">
                                     {{post_it.post_body}}
                                 </p>
                             </div>
@@ -88,7 +88,38 @@
 
             {% endfor %}
 
+            <nav style="background-color: #191919;">
+                <span class="current text-muted">
+                    Page {{post_its.number}} of {{post_its.paginator.num_pages}}
+                </span>
+                <ul class="pagination" style="align-items: center;">
+                    {% if post_its.has_previous %}
+                        <li class="page-item" style="background-color: #191919;">
+                            <a class="page-link" href="?page=1"  style="background-color: #191919;">
+                                &laquo; First
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ post_its.previous_page_number }}" style="background-color: #191919;">
+                                Previous
+                            </a>
+                        </li>
+                    {% endif %}
 
+                    {% if post_its.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{post_its.next_page_number }}" style="background-color: #191919;">
+                                Next
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ post_its.paginator.num_pages }}" style="background-color: #191919;">
+                                Last &raquo;
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
         </div>
 
     </div>
@@ -97,17 +128,17 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
+     aria-hidden="true" style="background-color:#000000">
+    <div class="modal-dialog modal-dialog-centered" role="document"  style="background-color:#000000">
+        <div class="modal-content" style="background-color:#191919">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">New Post It</h5>
+                <h5 class="modal-title text-muted" id="exampleModalLongTitle">New Post It</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST">
+                <form method="POST" class="text-muted">
                     <div class="modal-body">
                         {% csrf_token %}
 
@@ -115,7 +146,7 @@
                     </div>
                      <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Post now</button>
+                            <button type="submit" class="btn btn-primary" style="background-color:#000000;">Post now</button>
                      </div>
                 </form>
             </div>
